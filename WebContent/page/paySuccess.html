@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.*,java.text.SimpleDateFormat" %>
+<%
+	String address,totle;
+	if(request.getAttribute("address") != null || request.getAttribute("totle") != null){
+		address = (String)request.getAttribute("address");
+		totle = (String)request.getAttribute("totle");
+	}else{
+		address = "";
+		totle = "0.00";
+	}
+	Date date = new Date(System.currentTimeMillis() + 259200000);
+	SimpleDateFormat sdf = new SimpleDateFormat("MM月dd日");
+%>
+	<div id="Tmall-PaySuccess">
+		<div id="PaySuccess-view">
+			<img src="page\iocn\paySuccess.png">
+			<strong>您已成功付款</strong>
+		</div>
+		<div id="PaySuccess-Tip"><br><br>
+			<ul>
+				<li>收货地址:<%=address %></li>
+				<li>实付款:
+					<strong>￥</strong>
+					<strong><%=totle %></strong>
+				</li>
+				<li>预计<%=sdf.format(date) %>送达</li>
+			</ul>
+			<span style="margin-left: 70px;">您可以</span>
+			<a href="####">查看已买到的宝贝</a>
+			<a href="####">查看交易详情</a><br><br>
+			<div>
+				<img src="page\iocn\TB1LF0CKFXXXXcAXFXXXXXXXXXX-21-20.png">
+				<strong>安全提醒:</strong>
+				<span>下单后,</span>
+				<span style="color: rgb(255,0,54);">用QQ给您发送链接办理退款的都是骗子！</span>
+				<span>天猫不存在系统升级，订单异常等问题，谨防假冒客服电话诈骗！</span>
+			</div>
+		</div>
+	</div><br><br><br>

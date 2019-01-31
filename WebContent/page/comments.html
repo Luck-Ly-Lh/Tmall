@@ -1,0 +1,51 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false" import="java.util.*,com.tmall.pojo.*,java.text.SimpleDateFormat"%>
+<%
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+	Order order = null;
+	if(request.getAttribute("order") != null){
+		order = (Order)request.getAttribute("order");
+	}
+	 
+%>
+
+	<div id="Tmall-Comments"><br>
+		<div id="Comments-Img">
+			<img src="${shopcart.p.imgSrc}">
+		</div>
+		<div id="Comments-Details">
+			<b>${shopcart.p.name}</b><br><br>
+			<span class="Details-Tip">价格:</span>
+			<strong>￥${shopcart.p.price}</strong>
+			<span style="margin-left: 0px;">元</span><br><br>
+			<span class="Details-Tip">配送:</span>
+			<span>快递:</span>
+			<span style="margin-left: 0px;">0.00</span><br><br>
+			<span class="Details-Tip">月销量:</span>
+			<strong>447</strong>
+			<span style="margin-left: 0px;">件</span><br><br><br>
+			<div id="Details-Note">
+				
+				<img src="page\iocn\reviewLight.png">
+				
+				<span>现在查看的是 您所购买商品的信息 于<%=sdf.format(order.getPayDate()) %>下单购买了此商品</span>
+			</div>
+		</div><br style="clear: left;"><br>
+		<div id="Comments-Content">
+			<span>
+				累计评价
+				<strong>27</strong>
+			</span>
+			<p><br></p>
+			<div id="Comments-Text">
+				<form action="content" method="post" >
+					<b>其他买家,需要您的建议哦!</b><br>
+					<div>评价商品</div>
+					<textarea type="text" name="content"></textarea><br>
+					<input type="hidden" name="id" value="${shopcart.p.id}">
+					<input type="hidden" name="orderNumber" value="${order.orderNumber}">
+					<button>提交评价</button>
+				</form>
+			</div>
+		</div>
+	</div><br><br><br>

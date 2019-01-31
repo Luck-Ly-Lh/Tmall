@@ -1,0 +1,34 @@
+<!--<%@page contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.*"%> -->
+
+	<div id="Tmall-Register">
+		<div style="margin:0px auto;width: 450px;">
+			<div id="Register-Tip">
+				<span style="font-weight: bold;">设置会员名</span><br>
+				<span>登陆名</span><br>
+				<span style="font-weight: bold;">设置登陆密码</span><br>
+				<span>登陆密码</span><br>
+				<span>密码确认</span><br>
+			</div>
+			<div id="Register-Box">
+				<form action="registered" method="post">
+					<input id="Box-User" type="text" name="username" placeholder="会员名一旦设置成功,无法修改">
+					<span id="checkResult"><span></span></span>
+					<br>
+					<p>登陆时验证,保护账号信息</p><br>
+					<span id="Box-Password">
+						<span>
+							<input  type="password" name="password" placeholder="设置你的登陆密码" style="margin-top: 22px;">
+							<span id="Password-Tip1" class="glyphicon glyphicon-ok-sign"></span><br>
+						</span>
+						<span>
+							<input type="password" placeholder="请再次输入你的密码" style="margin-top: 35px;">
+							<span id="Password-Tip2" class="glyphicon glyphicon-ok-sign"></span><br>
+						</span>
+						<button type="submit">提交</button>
+					</span>
+				</form>
+			</div>
+		</div>
+		<br style="clear:left;"><br><br>
+	</div><br>

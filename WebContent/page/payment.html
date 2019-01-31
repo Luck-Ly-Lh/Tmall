@@ -1,0 +1,23 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.*" %> -->
+<%
+	String totle;
+	if(request.getAttribute("totle") == null){
+		totle = "0.00";
+	}else{
+		totle = String.format("%,.2f",request.getAttribute("totle"));
+	}
+	String orderNumber = (String)request.getAttribute("orderNumber");
+%>
+	<div id="Tmall-Payment"><br>
+		<form action="paySuccess" method="post">
+			<img style="width: 190px;height: 27px;float: left;" src="page\iocn\TB1_Gn8RXXXXXXqaFXXXXXXXXXX-380-54.png"><br><br><br>
+			<span>扫一扫付款(元)</span><br><br>
+			<strong>￥</strong>
+			<strong><%=totle %></strong><br>
+			<input type="hidden" name="totle" value="<%=totle %>" >
+			<input type="hidden" name="orderNumber" value="<%=orderNumber %>">
+			<img src="page\iocn\alipay2wei.png"><br><br>
+			<button>确认支付</button>
+		</form>
+	</div><br><br><br>

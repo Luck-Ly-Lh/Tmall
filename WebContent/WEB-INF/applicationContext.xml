@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+   http://www.springframework.org/schema/beans 
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+   http://www.springframework.org/schema/tx 
+   http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+   http://www.springframework.org/schema/context      
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+   
+    <!--用户  -->
+    <bean name="UserActionBean" scope="prototype" class="com.tmall.action.UserAction">
+    	<property name="userService" ref="userServiceImpl" />
+    </bean>
+    
+    <bean name="userServiceImpl" class="com.tmall.service.impl.UserServiceImpl">
+    	<property name="userDAO" ref="userDAOImpl" />
+    </bean>
+    
+    <bean name="userDAOImpl" class="com.tmall.dao.impl.UserDAOImpl">
+    	<property name="sessionFactory" ref="sf" />
+    </bean>
+	<!-- 工厂 -->
+	<bean name="sf"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="ds" />
+		<property name="mappingResources">
+			<list>
+				<value>com/tmall/pojo/hbm.xml</value>
+			</list>
+		</property>
+ 
+	    <property name="schemaUpdate">  
+	        <value>true</value>  
+	    </property>  
+	    		
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQLDialect
+				hibernate.show_sql=true
+				hbm2ddl.auto=update
+   			</value>
+		</property>
+	</bean>    
+        
+        
+    <bean name="ds"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/tmall?characterEncoding=UTF-8" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>	    
+</beans>

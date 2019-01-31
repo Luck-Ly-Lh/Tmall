@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tmall.pojo">
+	<class name="User" table="user_">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="username"/>
+		<property name="password" />
+		<set name="shopcarts" lazy="false" fetch="join">
+			<key column="uid" />
+			<one-to-many class="Shopcart"/>
+		</set>
+		<set name="orders" lazy="false" fetch="join">
+			<key column="uid"/>
+			<one-to-many class="Order"/>
+		</set>
+		<set name="comments" lazy="false" fetch="join">
+			<key column="uid"/>
+			<one-to-many class="Comments"/>
+		</set>
+	</class>
+	
+	
+	<class name="Shopcart" table="shopcart_">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="num" />
+		<property name="sendDate"/>
+		<many-to-one name="u" class="User" column="uid" lazy="false" />
+		<many-to-one name="o" class="Order" column="oid"/>
+		<many-to-one name="p" class="Product" unique="true" fetch="join" column="pid"/>
+	</class>
+	
+	
+	<class name="Product" table="product_">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="imgSrc" />
+		<property name="name" />
+		<property name="price" />
+		<many-to-one name="category" class="Category" column="cid" lazy="false" />
+		<set name="comments" lazy="false">
+			<key column="pid"/>
+			<one-to-many class="Comments" />
+		</set>
+		<one-to-one name="shopcart" class="Shopcart"/>
+	</class>
+	
+	
+	<class name="Order" table="order_">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="orderNumber" />
+		<property name="name" />
+		<property name="address" />
+		<property name="phone" />
+		<property name="zip" />
+		<property name="state"/>
+		<property name="addDate" />
+		<property name="payDate" />
+		<many-to-one name="u" class="User" column="uid" lazy="proxy" />
+		<set name="shopcarts" lazy="false">
+			<key column="oid" />
+			<one-to-many class="Shopcart"/>
+		</set>
+	</class>
+	
+	
+	<class name="Category" table="category_">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="name" />
+		<property name="classImg" />
+		<set name="products" lazy="false">
+			<key column="cid" />
+			<one-to-many class="Product" />
+		</set>
+	</class>
+	
+	
+	<class name="Comments" table="comments_">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="content" />
+		<property name="comDate" />
+		<many-to-one name="u" class="User" column="uid" fetch="join"/>
+		<many-to-one name="p" class="Product" column="pid"/>
+	</class>
+	
+
+	
+</hibernate-mapping>

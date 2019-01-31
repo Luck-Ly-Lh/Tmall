@@ -1,0 +1,59 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
+
+	<div id="Tmall-Goods">
+		<div style="text-align: center;">
+			<img src="page\iocn\comformPayFlow.png">
+		</div><br>
+		<div id="Goods-Time">
+			<span style="margin-left: 140px;">${order.addDate}</span>
+			<span>${order.payDate}</span>
+			<span>${shopcart.sendDate}</span>
+		</div><br><br><br>
+		<b>我已收到货，同意支付宝付款 </b>
+		<div id="Goods-Order">
+			<span>订单信息</span><br><br>
+			<div class="Order-Text">
+				<strong style="margin-left: 270px;">宝贝</strong>
+				<strong style="margin-left: 270px;">单价</strong>
+				<strong>数量</strong>
+				<strong>商品总价</strong>
+				<strong>运费</strong>
+			</div>
+			<div class="Order-Row">
+				<img src="${shopcart.p.imgSrc}">
+				<a href="####">${shopcart.p.name}</a>
+				<span style="display: inline;">￥</span>
+				<span style="width: 150px;">${shopcart.p.price}</span>
+				<span>${shopcart.num}</span>
+				<strong>￥</strong>
+				<strong>${shopcart.p.price * shopcart.num}</strong>
+				<span style="display: inline;margin-left: 70px;">快递:</span>
+				<span style="display: inline;">0.00</span>
+			</div><br>
+			<div class="Order-Totle">
+				<span>实付款:</span>
+				<strong>￥</strong>
+				<strong>${shopcart.p.price * shopcart.num}</strong>
+			</div><br style="clear: right;"><br>
+			<div class="Order-Detail">
+				<span>订单编号：</span>
+				<p>${order.orderNumber}</p>
+				<img src="page\iocn\confirmOrderTmall.png"> <br><br>
+				<span>卖家昵称：</span>
+				<p>天猫商铺</p>
+				<a href="####"><img src="page\iocn\wangwang.png">和我联系</a>	<br><br>
+				<span>收货信息：</span>
+				<p>${order.address}</p><br><br>
+				<span>成交时间：</span>
+				<p>${order.payDate}</p><br><br>
+			</div>
+			<div id="Order-Confirm">
+				<form action="dealSuccess">
+					<strong>请收到货后，再确认收货！否则您可能钱货两空！</strong><br><br><br>
+					<input type="hidden" name="order.id" value="${order.id}">
+					<button>确认支付</button>
+				</form>
+			</div>
+		</div>
+	</div><br><br><br>

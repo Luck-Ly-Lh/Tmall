@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+  
+  	<constant name="struts.objectFactory" value="spring"/>
+  
+ 	<package name="basicstruts" extends="struts-default">
+ 		
+ 		<action name="deleteOrder" class="UserActionBean" method="deleteOrder">
+ 			<result>order.jsp</result>
+ 		</action>
+ 		<action name="deleteShopcart" class="UserActionBean" method="deleteShopcart">
+ 			<result>shopcart.jsp</result>
+ 		</action>
+ 		<action name="classify" class="UserActionBean" method="classify">
+ 			<result name="success">classify.jsp</result>
+ 		</action>
+ 		<action name="test" class="UserActionBean" method="test">
+ 			<result>home.jsp</result>
+ 		</action>
+ 		<action name="content" class="UserActionBean" method="content">
+ 			<result name="success">product.jsp</result>
+ 		</action>
+ 		<action name="comments" class="UserActionBean" method="comments">
+ 			<result name="success">comments.jsp</result>
+ 		</action>
+ 		<action name="dealSuccess" class="UserActionBean" method="dealSuccess">
+ 			<result name="success">dealSuccess.jsp</result>
+ 		</action>
+ 		<action name="goods" class="UserActionBean" method="goods">
+ 			<result>goods.jsp</result>
+ 		</action>
+ 		<action name="remind" class="UserActionBean" method="remind">
+ 			<result name="success">order.jsp</result>
+ 			<result name="fail">login.jsp</result>
+ 		</action>
+ 		<action name="paySuccess" class="UserActionBean" method="paySuccess">
+ 			<result name="success">paySuccess.jsp</result>
+ 		</action>
+ 		<action name="payment" class="UserActionBean" method="payment">
+ 			<result name="success">payment.jsp</result>
+ 		</action>
+ 		<action name="payMoney" class="UserActionBean" method="payMoney">
+ 			<result name="success">pay.jsp</result>
+ 		</action>
+ 		<action name="pay" class="UserActionBean" method="pay">
+ 			<result name="success">pay.jsp</result>
+ 		</action>
+ 		
+ 		<action name="nowPay" class="UserActionBean" method="nowPay">
+ 			<result name="success">pay.jsp</result>
+ 			<result name="fail">login.jsp</result>
+ 		</action>
+ 		<action name="addShopcart" class="UserActionBean" method="addShopcart">
+ 			<result>product.jsp</result>
+ 		</action>
+ 		<action name="product" class="UserActionBean" method="product">
+ 			<result name="success">product.jsp</result>
+ 		</action>
+  		<action name="homePage" class="UserActionBean" method="home">
+  			<result name="success">home.jsp</result>
+  		</action>
+  		<action name="loginPage">
+  			<result>login.jsp</result>
+  		</action>
+  		<action name="registerPage">
+  			<result>registered.jsp</result>
+  		</action>
+  		<action name="orderPage" class="UserActionBean" method="orderPage">
+  			<result name="success">order.jsp</result>
+  			<result name="fail">login.jsp</result>
+  		</action>
+  		<action name="shopcartPage" class="UserActionBean" method="shopcartPage">
+  			<result name="success">shopcart.jsp</result>
+  			<result name="fail">login.jsp</result>
+  		</action>
+  		<action name="checkName" class= "UserActionBean" method="checkName">
+  			<result>registered.jsp</result>
+  		</action>
+  		<action name="registered" class="UserActionBean" method="registered">
+  			<result name="success">registerSuccess.jsp</result>
+  		</action>
+  		<action name="login" class="UserActionBean" method="login">
+  			<result name="success">home.jsp</result>
+  		</action>
+  		<action name="out" class="UserActionBean" method="out">
+  			<result name="success">login.jsp</result>
+  		</action>
+  
+  
+	</package>
+</struts>

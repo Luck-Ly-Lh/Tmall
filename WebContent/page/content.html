@@ -1,0 +1,854 @@
+<%@page contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.*,com.tmall.pojo.*"%>
+<%
+	List<Category> list = null;
+	if(request.getAttribute("categorys") != null){
+		list = (List)request.getAttribute("categorys");
+	}else{
+%>
+	<script>
+		window.location.href = "homePage";
+	</script>
+<%	} %>
+	<div id="Content" style="background-color: rgb(254,12,63);width: 1920px;position: relative;top: 0px;position: fixed;z-index: 2;display: none">
+		<div id="Context-Sreach">
+			<img src="page\iocn\_20181229221733.png">
+			<input type="text" name="" placeholder="搜索 天猫 商品/品牌/店铺">
+			<a href="classify">
+				<span>搜索</span>
+			</a>
+		</div>
+	</div>
+	<div id="Tmall-Content">
+		<div id="Content-Show">
+			<div id="Show-One">
+				<b>品牌闪购 BRAND SALE</b>
+				<a href="classify" class="choose" style="margin-right: 0px;">
+					<img src="page\iocn\arrow.png">
+				</a>
+				<a href="classify">
+					<img src="page\contentphoto\TB1Z_NRuhGYBuNjy0FnXXX5lpXa-468-644.jpg_320x5000q100.jpg_.webp.jpg" id="One-Img" class="Show-Img">
+				</a>
+			</div>
+			<div id="Show-Two">
+				<b>聚名品 LUXURY CHANNEL</b>
+				<a href="classify" class="choose">
+					<img src="page\iocn\arrow.png">
+				</a>
+				<a href="classify">
+					<img src="page\contentphoto\TB1ZkoLukCWBuNjy0FaXXXUlXXa-966-644.jpg_490x490q100.jpg_.webp.jpg">
+				</a>
+			</div>
+			<div id="Show-Three">
+				<b>品牌活动 BRAND ACTIVITY</b>
+				<a href="classify" class="choose">
+					<img src="page\iocn\arrow.png">
+				</a>
+				<a href="classify">
+					<img src="page\contentphoto\TB1KCAAswHqK1RjSZFPSuwwapXa.jpg_490x490q100.jpg_.webp.jpg">
+				</a>
+			</div>
+
+			<div id="Content-Brand">
+				<div class="Brand-Block">
+					<div class="Brand-Black">
+						<p>T</p><br>
+						<a href="classify">			
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\T1tzyoXnd3XXb1upjX.jpg_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block">
+					<div class="Brand-Black">
+						<p>奔富酒园</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\T1X8OBXwhcXXal8NYH_!!0.JPG_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block">
+					<div class="Brand-Black">
+						<p>GateMan</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1a3bVRXXXXXbfXFXXXXXXXXXX.png">
+					</div>
+				</div>
+				<div class="Brand-Block">
+					<div class="Brand-Black">
+						<p>ROYAL CANIN</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1aIWcq4WYBuNjy1zkXXXGGpXa.png">
+					</div>
+				</div>
+				<div class="Brand-Block">
+					<div class="Brand-Black">
+						<p>EVE NY/伊芙心悦</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1B.inJVXXXXcfXVXXSutbFXXX.jpg_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block">
+					<div class="Brand-Black">
+						<p>belulu</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1D0sLnHSYBuNjSspiXXXNzpXa.png">
+					</div>
+				</div>
+				<div class="Brand-Block">
+					<div class="Brand-Black">
+						<p>Plasmon</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1D2SNJVXXXXXmXVXXSutbFXXX.jpg_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block">
+					<div class="Brand-Black">
+						<p>布朗天使</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1FgqknYGYBuNjy0FoXXciBFXa.png">
+					</div>
+				</div>
+				<div class="Brand-Block">
+					<div class="Brand-Black">
+						<p>J Brand</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1gKOgv98YBeNkSnb4wu1evFXa.png_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block">
+					<div class="Brand-Black">
+						<p>普哆衣</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1I1IYIVXXXXalXXXXSutbFXXX.jpg_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>aspire(烟具)</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1iDgRJpXXXXXbXVXXSutbFXXX.jpg_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>Schneider Electric</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1ilbUHpXXXXb8XXXXSutbFXXX.jpg_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>SUSONGETH</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1KFgvIVXXXXX_apXXSutbFXXX.jpg_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>卫洗丽</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1kJg5ifiSBuNkSnhJXXbDcpXa.png">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>Skin Menu</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1L.evIXXXXXcXXFXXSutbFXXX.jpg_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>Sefon/臣枫</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1lL6xPVXXXXcTXpXXSutbFXXX.jpg_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>Love &#38; Rattan</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1ma.ZIVXXXXaEXXXXSutbFXXX.jpg_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>优惠券 50￥</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1o7kCcZyYBuNkSnfoXXcWgVXa.png">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>伊娜</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1oZGMPXXXXXayXFXXSutbFXXX.jpg_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>Pinterchains</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1qWQyIVXXXXXlapXXSutbFXXX.jpg_100x150q100.jpg_.webp (1).jpg">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>米皇</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1mk.png">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>Crystaluxe</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1R08RJFXXXXbFXFXXSutbFXXX.jpg_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>澜</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1sMyEGFXXXXcXXVXXkbrmNFXX_!!0.jpg_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>ENFINITAS</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1TJNTPXXXXXcqXVXXSutbFXXX.jpg_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>喜马拉雅好声音</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB1VcxuJVXXXXXEXpXXSutbFXXX.jpg_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>Aide Baou</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB14cKyo26H8KJjy0FjXXaXepXa.png">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>杭依阁</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB17gUAJFXXXXccXpXXSutbFXXX.jpg_100x150q100.jpg_.webp.jpg">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>Racekish</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB17zqElNGYBuNjy0FnXXX5lpXa.png">
+					</div>
+				</div>
+				<div class="Brand-Block Block-Interval">
+					<div class="Brand-Black">
+						<p>Difiney</p><br>
+						<a href="classify">
+							<span>点击进入</span>
+						</a>
+					</div>
+					<div>
+						<img src="page\brand\TB18pr2k1uSBuNjSsplXXbe8pXa.png">
+					</div>
+				</div>
+				<div class="Block-Interval" id="Block-Tail">
+					<div class="Brand-Black" style="background-color: rgb(255,0,54);padding-top: 25px;">
+						<img src="page\iocn\hover\exchange.png"><br>
+						<span>&#160;换一批</span>
+					</div>
+					<div id="Dimg">
+						<img src="page\iocn\exchange.png"><br>
+						<span>&#160;换一批</span>
+					</div>
+				</div><br><br><br>
+			</div>
+			<!-- 天猫超市 -->
+			<div class="Content-Supermarket" id="Supermark">
+				<img src="page\iocn\TB1Q67hXPihSKJjy0FeXXbJtpXa-428-50.png">		
+				<a href="classify" style="margin-left: 350px;">进口食品</a>
+				<a href="classify">食品饮料</a>
+				<a href="classify">粮油副食</a>
+				<a href="classify">美容洗护</a>
+				<a href="classify">家具家电</a>
+				<a href="classify">家庭清洁</a>
+				<a href="classify">母婴用品</a>
+				<a href="classify">生鲜水果</a>
+			</div>
+			<div class="Supermarket-BigImg">
+				<a href="classify">
+					<img src="page\contentphoto\TB1UH3CugKTBuNkSne1XXaJoXXa-468-1236.png">
+				</a>
+				<div id="BigImg-Classify" style="width:482px;">
+					<span style="background-color: rgb(241,241,241);color: black;" index = "0">
+					今日疯抢</span>
+					<span index = "1">量贩装</span>
+					<img src="page\contentphoto\TB1cHjNgOrpK1RjSZFhXXXSdXXa-400-400.jpg" style="float: right;">
+					<br><br><br><br><br><br><br>
+					<div>
+						<img src="page\iocn\TB12RqQewMPMeJjy1XdXXasrXXa-23-23.png" style="width: 23px;height: 23px;margin-left: 30px;">
+						<b>限时限量疯抢</b>
+						<p>1元超值疯抢中</p>
+					</div>
+				</div>
+				<div id="BigImg-Triangle">
+				</div>
+<% 
+	if(list != null){
+		Set<Product> products = list.get(0).getProducts();
+		for(Product product : products){	
+%>
+				<a href="product">
+					<div class="BigImg-Product" style="margin-left: 10px;">
+						<img src="<%=product.getImgSrc() %>">
+						<span style="display: inline-block;"><%=product.getName() %></span>
+						<br>
+						<span class="Product-Price">
+							<span>￥</span>
+							<span><%=product.getPrice() %></span>
+						</span>
+						<input type="hidden" name="id" value="<%=product.getId() %>">
+					</div>	
+				</a>
+<%		}
+	}%>				
+			</div>
+			<div style="position: absolute;width: 200px;">
+				<div class="Supermarket-Tip" style="bottom: -470px;">
+					<span style="opacity: 0.9;float: left;font-weight: bold;">
+						天猫<br>
+						超市
+					</span>
+					<span style="opacity: 0.7;width: 128px;">
+						年终打赏<br>
+						抢5折好货
+					</span>
+				</div><br style="clear: left;">
+				<br>
+			</div>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<!-- 天猫国际 -->
+			<div class="Content-Supermarket" id="International">	
+				<img src="page\iocn\TB1R.slXGagSKJjy0FgXXcRqFXa-428-50.png">
+				<a href="classify" style="margin-left: 750px;">口红</a>
+				<a href="classify">YSL</a>
+				<a href="classify">面膜</a>
+				<a href="classify">防晒</a>
+				<a href="classify">迪奥</a>
+				
+			</div>
+			<div class="Supermarket-BigImg">
+				<div style="width: 234px;height: 618px;float: left;">
+					<a href="classify">
+						<img src="page\contentphoto\TB1Cj4esSzqK1RjSZPxwu34tVXa.png" style="width: 234px;height: 309px;">
+					</a>
+					<a href="classify">
+						<img src="page\contentphoto\TB15.4osNTpK1RjSZFMwu2G_VXa.png" style="width: 234px;height: 309px;">
+					</a>
+				</div>
+				
+				<a href="product">
+					<div class="BigImg-Product">
+						<span style="float: left;font-size: 18px;margin-left: 10px;">官方直营优选</span>
+						<br>
+						<span style="float: left;color: rgb(143,69,233);">
+							极致购物感受
+						</span><br><br><br>
+						<img src="page\product\TB1iMNjsOrpK1RjSZFhSutSdXXa.jpg">
+
+					</div>	
+				</a>
+				
+<% 
+	if(list != null){
+		Set<Product> products = list.get(1).getProducts();
+		for(Product product : products){	
+%>
+				<a href="product">
+					<div class="BigImg-Product" style="margin-left: 10px;">
+						<img src="<%=product.getImgSrc() %>">
+						<span style="display: inline-block;"><%=product.getName() %></span>
+						<br>
+						<span class="Product-Price">
+							<span>￥</span>
+							<span><%=product.getPrice() %></span>
+						</span>
+						<input type="hidden" name="id" value="<%=product.getId() %>">
+					</div>	
+				</a>
+<%		}
+	}%>						
+				
+			</div>
+			<div style="position: absolute;width: 200px;">
+				<div class="Supermarket-Tip" style="bottom: -520px;">
+					<span style="opacity: 0.9;float: left;font-weight: bold;">
+						进口<br>
+						精选
+					</span>
+					<span style="opacity: 0.7;width: 128px;">
+						大牌好货<br>
+						轻松购入
+					</span>
+				</div><br style="clear: left;">
+				<br>
+			</div>
+			<div style="position: absolute;width: 200px;">
+				<div class="Supermarket-Tip" style="bottom: -200px;">
+					<span style="opacity: 0.9;float: left;font-weight: bold;">
+						直营<br>
+						品质
+					</span>
+					<span style="opacity: 0.7;width: 128px;">
+						放心体验<br>
+						畅享全球
+					</span>
+				</div><br style="clear: left;">
+				<br>
+			</div>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<a href="classify">
+				<img src="page\contentphoto\TB1ZHtzrkzoK1RjSZFlSuui4VXa.jpg" style="width: 1230px;height: 68.34px;">
+			</a><br><br>
+			<!-- 美丽人生 -->
+			<div class="Content-Supermarket" id="Beautiful">
+				<p><br></p>
+				<span style="font-size: 19px;">美丽人生</span>
+				<span>FASHION &#38; BEAUTY</span>
+				<a href="classify" style="margin-left: 360px;">连衣裙</a>
+				<a href="classify">T恤男</a>
+				<a href="classify">美容护肤</a>
+				<a href="classify">休闲男鞋</a>
+				<a href="classify">黄金项链</a>
+				<a href="classify">单鞋</a>
+				<a href="classify">女包</a>
+				<a href="classify">文胸</a>
+				<a href="classify">大牌腕表</a>
+			</div>
+			<div class="Supermarket-BigImg">
+				<a href="classify">
+					<img src="page\contentphoto\TB1_PDsiG6qK1RjSZFmSut0PFXa.jpg">
+				</a>
+<% 
+	if(list != null){
+		Set<Product> products = list.get(2).getProducts();
+		for(Product product : products){	
+%>
+				<a href="product">
+					<div class="BigImg-Product" style="margin-left: 10px;">
+						<img src="<%=product.getImgSrc() %>">
+						<span style="display: inline-block;"><%=product.getName() %></span>
+						<br>
+						<span class="Product-Price">
+							<span>￥</span>
+							<span><%=product.getPrice() %></span>
+						</span>
+						<input type="hidden" name="id" value="<%=product.getId() %>">
+					</div>	
+				</a>
+<%		}
+	}%>						
+				
+				
+				
+				
+
+			</div>
+			<div style="position: absolute;width: 200px;">
+				<div class="Supermarket-Tip" style="bottom: -470px;">
+					<span style="opacity: 0.9;float: left;font-weight: bold;">
+						品质<br>
+						男装
+					</span>
+					<span style="opacity: 0.7;width: 128px;">
+						好货5折起<br>
+						领劵再减
+					</span>
+				</div><br style="clear: left;">
+				<br>
+			</div>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<!-- 潮电酷玩 -->
+			<div class="Content-Supermarket" id="Trend">
+				<p><br></p>
+				<span style="font-size: 19px;">超电酷玩</span>
+				<span>ELECTRONICS</span>
+				<a href="classify" style="margin-left: 360px;">手机</a>
+				<a href="classify">iPhone</a>
+				<a href="classify">相机</a>
+				<a href="classify">数码配件</a>
+				<a href="classify">影音电玩</a>
+				<a href="classify">生活电器</a>
+				<a href="classify">个人护理</a>
+				<a href="classify">电脑硬件</a>
+				<a href="classify">笔记本</a>
+			</div>
+			<div class="Supermarket-BigImg">
+				<a href="classify">
+					<img src="page\contentphoto\O1CN01xUVG0X29zFevmWsHJ_!!1714128138.jpg">
+				</a>
+<% 
+	if(list != null){
+		Set<Product> products = list.get(3).getProducts();
+		for(Product product : products){	
+%>
+				<a href="product">
+					<div class="BigImg-Product" style="margin-left: 10px;">
+						<img src="<%=product.getImgSrc() %>">
+						<span style="display: inline-block;"><%=product.getName() %></span>
+						<br>
+						<span class="Product-Price">
+							<span>￥</span>
+							<span><%=product.getPrice() %></span>
+						</span>
+						<input type="hidden" name="id" value="<%=product.getId() %>">
+					</div>	
+				</a>
+<%		}
+	}%>						
+
+			</div>
+			<div style="position: absolute;width: 200px;">
+				<div class="Supermarket-Tip" style="bottom: -470px;">
+					<span style="opacity: 0.9;float: left;font-weight: bold;">
+						新年<br>
+						换新
+					</span>
+					<span style="opacity: 0.7;width: 128px;">
+						MIX3<br>
+						手机新品
+					</span>
+				</div><br style="clear: left;">
+				<br>
+			</div>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<a href="classify">
+				<img src="page\contentphoto\TB1kbFtrXYqK1RjSZLeSuvXppXa.jpg" style="width: 1230px;height: 68.34px;">
+			</a><br><br>
+			<!-- 居家生活 -->
+			<div class="Content-Supermarket" id="Home">
+				<p><br></p>
+				<span style="font-size: 19px;">居家生活</span>
+				<span>GROCERY &#038; HEALTH</span>
+				<a href="classify" style="margin-left: 220px;">零食</a>
+				<a href="classify">牛奶</a>
+				<a href="classify">居家饰品</a>
+				<a href="classify">保温杯</a>
+				<a href="classify">保健品</a>
+				<a href="classify">常用药</a>
+				<a href="classify">热门图书</a>
+				<a href="classify">洗发水</a>
+				<a href="classify">卫生巾</a>
+				<a href="classify">家庭清洁</a>
+				<a href="classify">狗粮</a>
+			</div>
+			<div class="Supermarket-BigImg">
+				<img src="page\contentphoto\TB161peyrPpK1RjSZFFSuu5PpXa.jpg">
+				
+<% 
+	if(list != null){
+		Set<Product> products = list.get(4).getProducts();
+		for(Product product : products){	
+%>
+				<a href="product">
+					<div class="BigImg-Product" style="margin-left: 10px;">
+						<img src="<%=product.getImgSrc() %>">
+						<span style="display: inline-block;"><%=product.getName() %></span>
+						<br>
+						<span class="Product-Price">
+							<span>￥</span>
+							<span><%=product.getPrice() %></span>
+						</span>
+						<input type="hidden" name="id" value="<%=product.getId() %>">
+					</div>	
+				</a>
+<%		}
+	}%>						
+				
+				
+				
+				<div style="position: absolute;width: 200px;">
+					<div class="Supermarket-Tip" style="bottom: -470px;">
+						<span style="opacity: 0.9;float: left;font-weight: bold;">
+							精品<br>
+							家具
+						</span>
+						<span style="opacity: 0.7;width: 128px;">
+							新年焕新<br>
+							抢百元劵
+						</span>
+					</div><br style="clear: left;">
+					<br>
+				</div>
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+				<!-- 打造爱巢 -->
+			<div class="Content-Supermarket" id="Love">
+				<p><br></p>
+				<span style="font-size: 19px;">打造爱巢</span>
+				<span>HOME</span>
+				<a href="classify" style="margin-left: 500px;">家具</a>
+				<a href="classify">大家电</a>
+				<a href="classify">四件套</a>
+				<a href="classify">健康电器</a>
+				<a href="classify">吸顶灯</a>
+				<a href="classify">平板电视</a>
+				<a href="classify">装修设计</a>
+				<a href="classify">跑步机</a>
+			</div>
+			<div class="Supermarket-BigImg">
+				<a href="classify">
+					<img src="page\contentphoto\TB1q718yiLaK1RjSZFxXXamPFXa-468-1236.jpg">
+				</a>
+				
+<% 
+	if(list != null){
+		Set<Product> products = list.get(5).getProducts();
+		for(Product product : products){	
+%>
+				<a href="product">
+					<div class="BigImg-Product" style="margin-left: 10px;">
+						<img src="<%=product.getImgSrc() %>">
+						<span style="display: inline-block;"><%=product.getName() %></span>
+						<br>
+						<span class="Product-Price">
+							<span>￥</span>
+							<span><%=product.getPrice() %></span>
+						</span>
+						<input type="hidden" name="id" value="<%=product.getId() %>">
+					</div>	
+				</a>
+<%		}
+	}%>						
+				
+				
+				
+				<div style="position: absolute;width: 200px;">
+					<div class="Supermarket-Tip" style="bottom: -470px;">
+						<span style="opacity: 0.9;float: left;font-weight: bold;padding-top: 22px;">
+							抢购
+						</span>
+						<span style="opacity: 0.7;width: 128px;">
+							家电焕新季<br>
+							加购抢半价
+						</span>
+					</div><br style="clear: left;">
+					<br>
+				</div>
+			</div>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<a href="classify">
+				<img src="page\contentphoto\TB1wASEqxjaK1RjSZFASuvdLFXa.jpg" style="width: 1230px;height: 68.34px;">
+			</a><br><br>
+			<!-- 户外出行 -->
+			<div class="Content-Supermarket" id="Outdoor">
+				<p><br></p>
+				<span style="font-size: 19px;">户外出行</span>
+				<span>OUTDOORS &#038; AUTOMOTIVE</span>
+				<a href="classify" style="margin-left: 510px;">车秒货</a>
+				<a href="classify">皮肤衣</a>
+				<a href="classify">运动鞋</a>
+				<a href="classify">4s保养</a>
+				<a href="classify">行车记录仪</a>
+				<a href="classify">轮胎</a>
+			</div>
+			<div class="Supermarket-BigImg">
+				<img src="page\contentphoto\TB1_tRvyirpK1RjSZFhSutSdXXa.jpg">
+				
+<% 
+	if(list != null){
+		Set<Product> products = list.get(6).getProducts();
+		for(Product product : products){	
+%>
+				<a href="product">
+					<div class="BigImg-Product" style="margin-left: 10px;">
+						<img src="<%=product.getImgSrc() %>">
+						<span style="display: inline-block;"><%=product.getName() %></span>
+						<br>
+						<span class="Product-Price">
+							<span>￥</span>
+							<span><%=product.getPrice() %></span>
+						</span>
+						<input type="hidden" name="id" value="<%=product.getId() %>">
+					</div>	
+				</a>
+<%		}
+	}%>						
+				
+				
+				<div style="position: absolute;width: 200px;">
+					<div class="Supermarket-Tip" style="bottom: -470px;">
+						<span style="opacity: 0.9;float: left;font-weight: bold;">
+							运动<br>
+							户外
+						</span>
+						<span style="opacity: 0.7;width: 128px;">
+							新年焕新<br>
+							抢百元劵
+						</span>
+					</div><br style="clear: left;">
+					<br>
+				</div>
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+				<!-- 猜你喜欢 -->
+				<div style="text-align: center;font-size: 20px;" id="Like">
+					— <span class="glyphicon glyphicon-heart-empty" style="color: rgb(253,54,60)"></span> 猜你喜欢 —
+				</div><br>
+				
+<% 
+	if(list != null){
+		Set<Product> products = list.get(7).getProducts();
+		for(Product product : products){	
+%>
+				<a href="product">
+					<div class="BigImg-Product" style="margin-left: 10px;">
+						<img src="<%=product.getImgSrc() %>">
+						<span style="display: inline-block;"><%=product.getName() %></span>
+						<br>
+						<span class="Product-Price">
+							<span>￥</span>
+							<span><%=product.getPrice() %></span>
+						</span>
+						<input type="hidden" name="id" value="<%=product.getId() %>">
+					</div>	
+				</a>
+<%		}
+	}%>						
+				
+				
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+				<div style="margin:0px auto;width: 89px;height: 53px;">
+					<img src="page\iocn\_20181229213742.png" style="width: 89px;height: 53px;">
+				</div><br><br>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div id="Context-Nav">
+		<div style="background-color: rgb(255,0,54)">导航</div>
+			<span><a href="#Supermark">天猫超市</a></span>
+			<span><a href="#International">天猫国际</a></span>
+			<span><a href="#Beautiful">美丽人生</a></span>
+			<span><a href="#Trend">潮电酷玩</a></span>
+			<span><a href="#Home">居家生活</a></span>
+			<span><a href="#Love">打造爱巢</a></span>
+			<span><a href="#Outdoor">户外出行</a></span>
+			<span><a href="#Like">猜你喜欢</a></span>
+		<div style="background-color: rgb(171,171,171)"><a href="#Tmall-Nav" style="color: white;text-decoration: none;">顶部</a></div>
+	</div>

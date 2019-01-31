@@ -1,0 +1,88 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.*,com.tmall.pojo.*"%>
+<%	
+	Set<Shopcart> shopcarts = null;
+	if(request.getAttribute("shopcarts") != null){
+		shopcarts = (HashSet)request.getAttribute("shopcarts");
+	}else{
+	
+	}
+	
+	double totle = 0.00;
+ %>
+	<div id="Tmall-Pay">
+		<form action="payment" method="post">
+			<div>
+				<img style="width: 190px;height: 27px;" src="page\iocn\TB1_Gn8RXXXXXXqaFXXXXXXXXXX-380-54.png">
+				<img style="margin-left: 400px;margin-top: 50px;" src="page\iocn\buyflow.png">
+			</div>
+			<div id="Pay-Address">
+				<b>输入收货地址</b><br>
+				<div>
+					<span style="margin-top: 0px;">详细地址<strong>*</strong></span>
+					<textarea name="address" placeholder="建议您如实填写详细收货地址,例如街道名称,门牌号码,楼层和房间号等信息"></textarea>
+				</div>
+				<span>邮政编码</span>
+				<input type="text" name="zip" placeholder="如果您记不清楚邮递区号,请填写000000"><br>
+				<span>收货人姓名<strong>*</strong> </span>
+				<input type="text" name="name" placeholder="长度不超过25个字符"><br>
+				<span>手机号码<strong>*</strong> </span>
+				<input type="text" name="phone" placeholder="请输入11位手机号码"><br><br>
+				<b>确认订单信息</b><br><br><br>
+			</div>
+<% 
+if(shopcarts != null){
+	for (Shopcart shopcart : shopcarts) {
+	%>
+			<div class="Pay-Order"><br>
+				<div class="Order-Head">
+					<img src="page\iocn\confirmOrderTmall.png">
+					<a href="####">店铺:天猫店铺
+						<img src="page\iocn\wangwang.png">
+					</a>
+					<span style="margin-left: 500px;">单价</span>
+					<span>数量</span>
+					<span>小计</span>
+					<span style="margin-left: 120px;">配送方式</span>
+				</div>
+				<div class="Order-Line">
+					<input type="hidden" name="id" value="<%=shopcart.getId() %>">
+					<img style="width: 100px;height: 100px;" src="<%=shopcart.getP().getImgSrc() %>">
+					<a href="####"><%=shopcart.getP().getName() %></a>
+					<img style="position: relative;left: -440px;top: 30px;" src="page\iocn\renzheng.png">
+					<span>￥</span>
+					<span style="width: 88px;"><%=shopcart.getP().getPrice() %></span>
+					<span style="width: 88px;"><%=shopcart.getNum() %></span>
+					<span style="color: rgb(255,0,54);font-weight: bold;">￥</span>
+					<span style="width: 140px;color: rgb(255,0,54);font-weight: bold;"><%=shopcart.getP().getPrice()*shopcart.getNum() %></span>
+					<input type="radio" checked="checked">
+					<p>普通配送</p>
+					<select>
+						<option>快递 免邮费</option>
+					</select>
+				</div><br>
+				<div id="Order-Message">
+					<div>
+						<span>店铺合计(含运费):</span>
+						<strong>￥</strong>
+						<strong><%=shopcart.getP().getPrice()*shopcart.getNum() %></strong><br>
+					</div>
+					<span style="float: left;">给卖家留言:</span>
+					<textarea></textarea><br>
+					<span>还可以输入200个字符</span>
+				</div><br>
+			</div>
+			<%totle += shopcart.getP().getPrice()*shopcart.getNum();
+	}
+} %>
+			<br><br><br>
+	
+			<div id="Pay-Tail">
+				<span>实付款:</span>
+				<strong>￥</strong>
+				<strong><%=totle %></strong><br><br><br>
+				<input type="hidden" name="totle" value="<%=totle %>">
+				<button>提交订单</button>
+			</div>
+		</form>
+	</div><br style="clear: right;"><br><br>

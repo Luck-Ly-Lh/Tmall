@@ -1,0 +1,32 @@
+<%@page contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.*,com.tmall.pojo.User"%>
+<%
+   	  String username = null;
+      String exit = null;
+      int count = 0;
+   	  if(session.getAttribute("user") == null){
+   	  		username = "请登录";
+   	  		exit = "免费注册";
+   	  }else{
+   	  		username = ((User)session.getAttribute("user")).getUsername();
+   	  		count = ((User)session.getAttribute("user")).getShopcarts().size();
+   	  		exit = "退出";
+   	  }
+%>
+
+	<nav id="Tmall-Nav">
+		<div>	
+			<a href="homePage">
+			<span class="glyphicon glyphicon-home"></span>
+			天猫首页</a>
+			<span style="margin-left: 20px;">喵,欢迎来天猫</span>
+			<a href="loginPage"><%=username %></a>
+			<a href="registerPage"><%=exit %></a>
+			<span id="rig">
+				<a href="orderPage">我的淘宝</a>
+				<a href="shopcartPage">
+				<span class="glyphicon glyphicon-shopping-cart"></span>
+				购物车<strong><%=count %></strong>件</a>
+			</span>
+		</div>
+	</nav>

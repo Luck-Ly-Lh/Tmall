@@ -1,0 +1,415 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.*,com.tmall.pojo.*,java.text.SimpleDateFormat" %>
+<%
+	Set<Order> orders = (Set)request.getAttribute("orders");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+%>
+	<div id="Tmall-Order">
+		<ul class="nav nav-tabs">
+		   <li class="active" style="border-bottom: 2px solid rgb(255,0,54);">
+		      <a href="#Order-All" data-toggle="tab" style="color: rgb(255,0,54);">所有订单</a>
+		   </li>
+		   <li>
+		  	 <a href="#Order-Payment" data-toggle="tab">待付款</a>
+		   </li>
+		   <li>
+		      <a href="#Order-Delivery" data-toggle="tab">待发货</a>
+		   </li>
+		   <li>
+		  	 <a href="#Order-Goods" data-toggle="tab">待收货</a>
+		   </li>
+		   <li>
+		  	 <a href="#Order-Evaluation" data-toggle="tab">待评价</a>
+		   </li>
+		</ul>
+		<div id="Order-Tip">
+			<span style="margin-left: 300px;">宝贝</span>
+			<span style="margin-left: 300px;">单价</span>
+			<span>数量</span>
+			<span>实付款</span>
+			<span>交易操作</span>
+		</div>
+		<div class="tab-content">
+<%	if(orders != null){ %>
+		   	<div class="tab-pane fade in active" id="Order-All">
+<%
+		
+	 	for(Order order : orders){
+	 		String state = null;
+			String action = null;
+			Date orderDate = null;
+	 		if(order.getPayDate() == null){
+	 			orderDate = order.getAddDate();
+	 		}else{
+	 			orderDate = order.getPayDate();
+	 		}
+	 		if("NotPay".equals(order.getState())){
+	 			state = "付款";
+	 			action = "payment";
+	 		}else if("Payment".equals(order.getState())){
+	 			state = "提醒卖家发货";
+	 			action = "remind";
+	 		}else if("SendGoods".equals(order.getState())){
+	 			state = "确认收货";
+	 			action = "goods";
+	 		}else if("ReceivedGoods".equals(order.getState())){
+	 			state = "评价";
+	 			action = "comments";
+	 		}
+	 		if(order.getShopcarts().isEmpty() == false){
+	 			Set<Shopcart> shopcarts = order.getShopcarts();
+%>
+		   		<div class="Pane-Content">
+			     	<div class="Order-Content-Head">
+						<strong><%=sdf.format(orderDate) %></strong>
+						<span>订单号: </span>
+						<span><%=order.getOrderNumber() %></span>
+						<img src="page\iocn\confirmOrderTmall.png" style="margin-left: 280px;">
+						<span>天猫商场</span>
+						<a href="####" style="background-color: rgb(255,238,162);color: rgb(255,0,54);">
+							<img src="page\iocn\wangwang.png">
+							和我联系
+						</a>
+						<input type="hidden" name="order.id" value="<%=order.getId() %>">
+						<a href="####" data-toggle="modal" data-target="#myModal" class="del">
+							<span class="glyphicon glyphicon-trash"></span>
+						</a>
+			    	</div>
+<%
+				for(Shopcart shopcart : shopcarts){	
+%>
+
+			    	<div class="Order-Content-Body">
+						<img src="<%=shopcart.getP().getImgSrc() %>" style="width: 100px;height: 100px;">
+						<a href="####"><%=shopcart.getP().getName() %></a>
+						<img src="page\iocn\renzheng.png" style="position: relative;left: -350px;top: 35px;">
+						<strong style="margin-left: 40px;">￥</strong>
+						<strong style="width: 145px;"><%=shopcart.getP().getPrice() %></strong>
+						<strong style="width: 130px;color: black;"><%=shopcart.getNum() %></strong>
+						<div>
+							<strong>￥</strong>
+							<strong style="width: 150px;"><%=shopcart.getP().getPrice() * shopcart.getNum() %></strong><br>
+							<span>含运费(￥:0.00)</span>
+						</div>
+						<%if(state != null){ %>
+						<form action="<%=action %>">
+							<input type="hidden" name="id" value="<%=shopcart.getId() %>">
+							<input type="hidden" name="orderNumber" value="<%=order.getOrderNumber() %>">
+							<button><%=state %></button>
+						</form>
+						<%}%>
+			    	</div>
+		<%	}%>
+		    	</div>	
+	<%		}
+		} %>
+		   	</div>
+			
+		   	<div class="tab-pane fade" id="Order-Payment">
+<%			
+		for(Order order : orders){
+			String state = null;
+			String action = null;
+			Date orderDate = null;
+			if(order.getPayDate() == null){
+				orderDate = order.getAddDate();
+			}else{
+				orderDate = order.getPayDate();
+			}
+			if("NotPay".equals(order.getState())){
+				state = "付款";
+				action = "payment";
+			}else if("Payment".equals(order.getState())){
+				state = "提醒卖家发货";
+				action = "remind";
+			}else if("SendGoods".equals(order.getState())){
+				state = "确认收货";
+				action = "goods";
+			}else if("ReceivedGoods".equals(order.getState())){
+				state = "评价";
+				action = "comments";
+			}
+			if("付款".equals(state) && order.getShopcarts().isEmpty() == false){
+				Set<Shopcart> shopcarts = order.getShopcarts();
+%>  	
+		 		<div class="Pane-Content">
+			     	<div class="Order-Content-Head">
+						<strong><%=sdf.format(orderDate) %></strong>
+						<span>订单号: </span>
+						<span><%=order.getOrderNumber() %></span>
+						<img src="page\iocn\confirmOrderTmall.png" style="margin-left: 280px;">
+						<span>天猫商场</span>
+						<a href="####" style="background-color: rgb(255,238,162);color: rgb(255,0,54);">
+							<img src="page\iocn\wangwang.png">
+							和我联系
+						</a>
+						<input type="hidden" name="order.id" value="<%=order.getId() %>">
+						<a href="####" data-toggle="modal" data-target="#myModal" class="del">
+							<span class="glyphicon glyphicon-trash"></span>
+						</a>
+			    	</div>
+<%
+				for(Shopcart shopcart : shopcarts){				
+%>			
+			    	<div class="Order-Content-Body">
+						<img src="<%=shopcart.getP().getImgSrc() %>" style="width: 100px;height: 100px;">
+						<a href="####"><%=shopcart.getP().getName() %></a>
+						<img src="page\iocn\renzheng.png" style="position: relative;left: -350px;top: 35px;">
+						<strong style="margin-left: 40px;">￥</strong>
+						<strong style="width: 145px;"><%=shopcart.getP().getPrice() %></strong>
+						<strong style="width: 130px;color: black;"><%=shopcart.getNum() %></strong>
+						<div>
+							<strong>￥</strong>
+							<strong style="width: 150px;"><%=shopcart.getP().getPrice() * shopcart.getNum() %></strong><br>
+							<span>含运费(￥:0.00)</span>
+						</div>
+						<%if(state != null){ %>
+						<form action="<%=action %>">
+							<input type="hidden" name="id" value="<%=shopcart.getId() %>">
+							<input type="hidden" name="orderNumber" value="<%=order.getOrderNumber() %>">
+							<button><%=state %></button>
+						</form>
+						<%}%>
+			    	</div>
+		    			
+			<% 	} %>
+				</div>
+		<%	} 
+		}%>
+		   	</div>
+
+		   	<div class="tab-pane fade" id="Order-Delivery">
+<%			 
+		for(Order order : orders){
+			String state = null;
+			String action = null;
+			Date orderDate = null;
+			if(order.getPayDate() == null){
+				orderDate = order.getAddDate();
+			}else{
+				orderDate = order.getPayDate();
+			}
+			if("NotPay".equals(order.getState())){
+				state = "付款";
+				action = "payment";
+			}else if("Payment".equals(order.getState())){
+				state = "提醒卖家发货";
+				action = "remind";
+			}else if("SendGoods".equals(order.getState())){
+				state = "确认收货";
+				action = "goods";
+			}else if("ReceivedGoods".equals(order.getState())){
+				state = "评价";
+				action = "comments";
+			}
+			if("提醒卖家发货".equals(state) && order.getShopcarts().isEmpty() == false){
+				Set<Shopcart> shopcarts = order.getShopcarts();
+%>		    	
+				<div class="Pane-Content">
+			     	<div class="Order-Content-Head">
+						<strong><%=sdf.format(orderDate) %></strong>
+						<span>订单号: </span>
+						<span><%=order.getOrderNumber() %></span>
+						<img src="page\iocn\confirmOrderTmall.png" style="margin-left: 280px;">
+						<span>天猫商场</span>
+						<a href="####" style="background-color: rgb(255,238,162);color: rgb(255,0,54);">
+							<img src="page\iocn\wangwang.png">
+							和我联系
+						</a>
+						<input type="hidden" name="order.id" value="<%=order.getId() %>">
+						<a href="####" data-toggle="modal" data-target="#myModal" class="del">
+							<span class="glyphicon glyphicon-trash"></span>
+						</a>
+			    	</div>
+<%
+				for(Shopcart shopcart : shopcarts){	
+%>	
+			    	<div class="Order-Content-Body">
+						<img src="<%=shopcart.getP().getImgSrc() %>" style="width: 100px;height: 100px;">
+						<a href="####"><%=shopcart.getP().getName() %></a>
+						<img src="page\iocn\renzheng.png" style="position: relative;left: -350px;top: 35px;">
+						<strong style="margin-left: 40px;">￥</strong>
+						<strong style="width: 145px;"><%=shopcart.getP().getPrice() %></strong>
+						<strong style="width: 130px;color: black;"><%=shopcart.getNum() %></strong>
+						<div>
+							<strong>￥</strong>
+							<strong style="width: 150px;"><%=shopcart.getP().getPrice() * shopcart.getNum() %></strong><br>
+							<span>含运费(￥:0.00)</span>
+						</div>
+						<%if(state != null){ %>
+						<form action="<%=action %>">
+							<input type="hidden" name="id" value="<%=shopcart.getId() %>">
+							<input type="hidden" name="orderNumber" value="<%=order.getOrderNumber() %>">
+							<button><%=state %></button>
+						</form>
+						<%}%>
+			    	</div>
+		    <%	} %>
+				</div>
+		<%	}
+		}%>
+		   	</div>
+		   
+		   	<div class="tab-pane fade" id="Order-Goods">
+<%			
+		for(Order order : orders){
+			String state = null;
+			String action = null;
+			Date orderDate = null;
+			if(order.getPayDate() == null){
+				orderDate = order.getAddDate();
+			}else{
+				orderDate = order.getPayDate();
+			}
+			if("NotPay".equals(order.getState())){
+				state = "付款";
+				action = "payment";
+			}else if("Payment".equals(order.getState())){
+				state = "提醒卖家发货";
+				action = "remind";
+			}else if("SendGoods".equals(order.getState())){
+				state = "确认收货";
+				action = "goods";
+			}else if("ReceivedGoods".equals(order.getState())){
+				state = "评价";
+				action = "comments";
+			}
+			if("确认收货".equals(state) && order.getShopcarts().isEmpty() == false){
+				Set<Shopcart> shopcarts = order.getShopcarts();
+%>	
+		      	<div class="Pane-Content">
+			     	<div class="Order-Content-Head">
+						<strong><%=sdf.format(orderDate) %></strong>
+						<span>订单号: </span>
+						<span><%=order.getOrderNumber() %></span>
+						<img src="page\iocn\confirmOrderTmall.png" style="margin-left: 280px;">
+						<span>天猫商场</span>
+						<a href="####" style="background-color: rgb(255,238,162);color: rgb(255,0,54);">
+							<img src="page\iocn\wangwang.png">
+							和我联系
+						</a>
+						<input type="hidden" name="order.id" value="<%=order.getId() %>">
+						<a href="####" data-toggle="modal" data-target="#myModal" class="del">
+							<span class="glyphicon glyphicon-trash"></span>
+						</a>
+			    	</div>
+<%
+				for(Shopcart shopcart : shopcarts){	
+%>	
+			    	<div class="Order-Content-Body">
+						<img src="<%=shopcart.getP().getImgSrc() %>" style="width: 100px;height: 100px;">
+						<a href="####"><%=shopcart.getP().getName() %></a>
+						<img src="page\iocn\renzheng.png" style="position: relative;left: -350px;top: 35px;">
+						<strong style="margin-left: 40px;">￥</strong>
+						<strong style="width: 145px;"><%=shopcart.getP().getPrice() %></strong>
+						<strong style="width: 130px;color: black;"><%=shopcart.getNum() %></strong>
+						<div>
+							<strong>￥</strong>
+							<strong style="width: 150px;"><%=shopcart.getP().getPrice() * shopcart.getNum() %></strong><br>
+							<span>含运费(￥:0.00)</span>
+						</div>
+						<%if(state != null){ %>
+						<form action="<%=action %>">
+							<input type="hidden" name="id" value="<%=shopcart.getId() %>">
+							<input type="hidden" name="orderNumber" value="<%=order.getOrderNumber() %>">
+							<button><%=state %></button>
+						</form>
+						<%}%>
+			    	</div>
+		    <%	} %>
+				</div>
+		<%	} 
+		}%>
+   
+		   	</div>
+		   	
+		   	<div class="tab-pane fade" id="Order-Evaluation">
+<%			 
+		for(Order order : orders){
+			String state = null;
+			String action = null;
+			Date orderDate = null;
+			if(order.getPayDate() == null){
+				orderDate = order.getAddDate();
+			}else{
+				orderDate = order.getPayDate();
+			}
+			if("NotPay".equals(order.getState())){
+				state = "付款";
+				action = "payment";
+			}else if("Payment".equals(order.getState())){
+				state = "提醒卖家发货";
+				action = "remind";
+			}else if("SendGoods".equals(order.getState())){
+				state = "确认收货";
+				action = "goods";
+			}else if("ReceivedGoods".equals(order.getState())){
+				state = "评价";
+				action = "comments";
+			}
+			if("评价".equals(state) && order.getShopcarts().isEmpty() == false){
+				Set<Shopcart> shopcarts = order.getShopcarts();
+%>		   	
+		      	<div class="Pane-Content">
+			     	<div class="Order-Content-Head">
+						<strong><%=sdf.format(orderDate) %></strong>
+						<span>订单号: </span>
+						<span><%=order.getOrderNumber() %></span>
+						<img src="page\iocn\confirmOrderTmall.png" style="margin-left: 280px;">
+						<span>天猫商场</span>
+						<a href="####" style="background-color: rgb(255,238,162);color: rgb(255,0,54);">
+							<img src="page\iocn\wangwang.png">
+							和我联系
+						</a>
+						<input type="hidden" name="order.id" value="<%=order.getId() %>">
+						<a href="####" data-toggle="modal" data-target="#myModal" class="del">
+							<span class="glyphicon glyphicon-trash"></span>
+						</a>
+			    	</div>
+<%
+				for(Shopcart shopcart : shopcarts){	
+%>	
+			    	<div class="Order-Content-Body">
+						<img src="<%=shopcart.getP().getImgSrc() %>" style="width: 100px;height: 100px;">
+						<a href="####"><%=shopcart.getP().getName() %></a>
+						<img src="page\iocn\renzheng.png" style="position: relative;left: -350px;top: 35px;">
+						<strong style="margin-left: 40px;">￥</strong>
+						<strong style="width: 145px;"><%=shopcart.getP().getPrice() %></strong>
+						<strong style="width: 130px;color: black;"><%=shopcart.getNum() %></strong>
+						<div>
+							<strong>￥</strong>
+							<strong style="width: 150px;"><%=shopcart.getP().getPrice() * shopcart.getNum() %></strong><br>
+							<span>含运费(￥:0.00)</span>
+						</div>
+						<%if(state != null){ %>
+						<form action="<%=action %>">
+							<input type="hidden" name="id" value="<%=shopcart.getId() %>">
+							<input type="hidden" name="orderNumber" value="<%=order.getOrderNumber() %>">
+							<button><%=state %></button>
+						</form>
+						<%}%>
+			    	</div>
+		    <%	} %>
+				</div>
+
+		<%	} 
+   		}%>
+		   	</div>
+  <% }	%> 
+  			<!-- 模态窗口 -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog">
+					<div class="modal-content">
+	 					 <div class="modal-header">
+	   						 <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+	  						 <h4 class="modal-title">确定要删除吗</h4>
+	 					 </div>
+	 					 <div class="modal-footer">
+	    					<button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+	   						<button data-dismiss="modal" class="btn btn-primary" type="button">确定</button>
+	 					 </div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div>
+		</div>
+	</div><br><br><br>

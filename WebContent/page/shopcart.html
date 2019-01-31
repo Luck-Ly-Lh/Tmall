@@ -1,0 +1,88 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.*,com.tmall.pojo.*"%>
+<%	
+	Set<Shopcart> shopcarts = (Set)request.getAttribute("shopcarts");
+ %>
+	<div id="Tmall-Shopcart"><br><br>
+		<form action="pay" onkeydown="if(event.keyCode==13){return false;}">
+			<div id="Shopcart-Head">
+				<span>已选商品(不含运费)</span>
+				<strong>￥</strong>
+				<strong style="font-size: 22px;" class="Shopcart-Sum">0.00</strong>
+				<button disabled="disabled" class="Shopcart-Commit">结算</button>
+			</div><br><br>
+			<div id="Shopcart-Title">
+				<a href="####" class="Check-All Select">
+					<img select="false" src="page\iocn\cartNotSelected.png">
+				</a>
+				<span style="margin-left: 0px;">全选</span>
+				<span style="margin-left: 150px;">商品信息</span>
+				<span style="margin-left: 450px;">单价</span>
+				<span>数量</span>
+				<span>金额</span>
+				<span>操作</span>
+			</div><br>
+			<%if(shopcarts != null){
+			  		for (Shopcart shopcart : shopcarts) {%>
+			<div class="Shopcart-Content">
+				<a href="####" class="Radio Select">
+					<img select="false" src="page\iocn\cartNotSelected.png">
+				</a>
+				<input type="hidden" name="id" value="<%=shopcart.getId() %>">
+				<img style="width: 100px;height: 100px;" src="<%=shopcart.getP().getImgSrc() %>">
+				<span>
+					<a href="product"><%=shopcart.getP().getName() %></a>
+				</span>
+				<span>
+					<img src="page\iocn\renzheng.png">
+				</span>
+				<strong>￥</strong>
+				<strong style="width: 118px;font-size: 22px;display: inline-block;"><%=shopcart.getP().getPrice() %></strong>
+				<p>-</p>
+				<input type="text" name="num" value="<%=shopcart.getNum() %>">
+				<p>+</p>
+				<strong style="margin-left: 35px;">￥</strong>
+				<strong style="width: 118px;font-size: 22px;display: inline-block;" class="Content-Sum"><%=shopcart.getNum() * shopcart.getP().getPrice() %></strong>
+				<a href="####" data-toggle="modal" data-target="#myModal" class="remove">删除</a><br>
+			</div>
+			
+			<%		}
+			  } %>
+
+			<br><br>
+			<div id="Shopcart-Pay">
+				<span style="margin-top:13px;float: left;margin-left: 30px;">
+					<a href="####" class="Check-All Select">
+						<img select="false" src="page\iocn\cartNotSelected.png">
+					</a>
+					全选
+				</span>
+				<div>
+					<span>已选商品</span>
+					<strong style="font-size: 22px;">0</strong>
+					<span>件 合计 (不含运费):</span>
+					<strong>￥</strong>
+					<strong  style="font-size: 22px;" class="Shopcart-Sum">0.00</strong>
+					<button disabled="disabled" class="Shopcart-Commit">结 算</button>
+				</div>
+			</div>
+		</form>
+		<!-- 模态窗口 -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog">
+				<div class="modal-content">
+ 					 <div class="modal-header">
+   						 <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+  						 <h4 class="modal-title">确定要删除吗</h4>
+ 					 </div>
+ 					 <div class="modal-footer">
+    					<button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+   						<button data-dismiss="modal" class="btn btn-primary" type="button">确定</button>
+ 					 </div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+			
+			
+
+	</div><br><br><br>
